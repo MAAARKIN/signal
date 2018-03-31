@@ -3,7 +3,7 @@ import React from 'react'
 // import Intro from './Intro'
 import SideBar from '../components/ui/SideBar'
 import Request from './Request'
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { Layout, Menu, Breadcrumb, Icon, Row } from 'antd';
 
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -24,12 +24,16 @@ class App extends React.Component {
             <Layout style={{ minHeight: '100vh' }}>
                 <SideBar collapsed={this.state.collapsed} onCollapse={this.onCollapse} />
                 <Layout>
-                    <Header className="header">Header</Header>
+                    <Header className="header">
+                        <Row type="flex" justify="center" align="top">
+                            <span>Signal</span>
+                        </Row>
+                    </Header>
                     <Content className='container'>
-                        
+
                         <Request />
-                        
-                        <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+
+                        <div style={{ padding: 24, background: '#fff' }}>
                             response will be here
                         </div>
                     </Content>
