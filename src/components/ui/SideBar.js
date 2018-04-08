@@ -9,7 +9,7 @@ class SideBar extends React.Component {
 
     render() {
         return (
-            <Sider width={250} style={{paddingTop: 50}} collapsed={this.props.collapsed} onCollapse={this.props.onCollapse}>
+            <Sider width={200} style={{paddingTop: 50}} collapsed={this.props.collapsed} onCollapse={this.props.onCollapse}>
                 <div className="logo" style={{color: 'green'}}>
                     logo
                 </div>

@@ -35,3 +35,12 @@
     background: #fff;
     padding: 0;
 }
+
+.ant-input-affix-wrapper .ant-input-suffix {
+    right: 0px;
+}
+
+.ant-input-affix-wrapper .ant-input-suffix .ant-btn {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
