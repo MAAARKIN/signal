@@ -13,33 +13,34 @@ import { Row, Col, Input, Select, Form, Icon, Button } from 'antd';
 const Option = Select.Option
 
 let uuid = 0;
+
 class Request extends React.Component {
 
     remove = (k) => {
         const { form } = this.props;
         // can use data-binding to get
-        const keys = form.getFieldValue('keys');
+        const headers = form.getFieldValue('headers');
         // We need at least one passenger
-        if (keys.length === 0) {
+        if (headers.length === 0) {
             return;
         }
 
         // can use data-binding to set
         form.setFieldsValue({
-            keys: keys.filter(key => key !== k),
+            headers: headers.filter(header => key !== k),
         });
     }
 
     add = () => {
         const { form } = this.props;
         // can use data-binding to get
-        const keys = form.getFieldValue('keys');
-        const nextKeys = keys.concat(uuid);
+        const headers = form.getFieldValue('headers');
+        const nextHeaders = headers.concat(uuid);
         uuid++;
         // can use data-binding to set
         // important! notify form to detect changes
         form.setFieldsValue({
-            keys: nextKeys,
+            headers: nextHeaders,
         });
     }
 
@@ -49,6 +50,7 @@ class Request extends React.Component {
             if (!err) {
                 console.log('Received values of form: ', values);
                 console.log(JSON.stringify(values))
+                this.props.httpStore.addRequest('teste')
             }
         });
     }
@@ -65,9 +67,9 @@ class Request extends React.Component {
             </Select>
         );
 
-        getFieldDecorator('keys', { initialValue: [] });
-        const keys = getFieldValue('keys');
-        const formItems = keys.map((k, index) => {
+        getFieldDecorator('headers', { initialValue: [] });
+        const headers = getFieldValue('headers');
+        const formItems = headers.map((k, index) => {
             return (
                 <div>
                     <Col sm={22} md={22}>
@@ -79,13 +81,13 @@ class Request extends React.Component {
                             )}
                         </Form.Item>
                     </Col>
-                    {keys.length >= 1 ? (
+                    {headers.length >= 1 ? (
                         <Col sm={2} md={2}>
                             <Icon
                                 style={{ marginLeft: 10 }}
                                 className="dynamic-delete-button"
                                 type="minus-circle-o"
-                                disabled={keys.length === 1}
+                                disabled={headers.length === 1}
                                 onClick={() => this.remove(k)}
                             />
                         </Col>
@@ -101,7 +103,8 @@ class Request extends React.Component {
                         <Col sm={24}>
                             <Form.Item>
                                 {getFieldDecorator('url', {
-                                    rules: [{ required: true, message: 'Please input your username!' }]
+                                    initialValue: 'httpbin.org/get',
+                                    rules: [{ required: true, message: 'Please input the url!' }]
                                 })(
                                     <Input addonBefore={prefixSelector} suffix={<Button type="primary" onClick={this.handleForm}>Send</Button>} placeholder="endpoint.com.br" />
                                 )}
@@ -119,12 +122,10 @@ class Request extends React.Component {
                                 </Button>
                             </Col>
                             <Col sm={16}>
-
                                 <AceEditor
                                     mode="java"
                                     theme="iplastic"
                                     showPrintMargin={false}
-                                    name="testeee"
                                     editorProps={{ $blockScrolling: true }}
                                     {...getFieldProps('body')}
                                     style={{ width: '100%', height: '100%', minHeight: 250 }}
