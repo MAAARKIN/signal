@@ -1,9 +1,11 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-// import Intro from './Intro'
-import SideBar from '../components/ui/SideBar'
-import Request from './Request'
+import { sendRequest } from '../actions/http';
+
 import { Layout, Menu, Breadcrumb, Icon, Row } from 'antd';
+import SideBar from '../components/ui/SideBar'
+import Request from '../components/Request'
 
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -19,6 +21,10 @@ class App extends React.Component {
         this.setState({ collapsed });
     }
 
+    handleRequest = (formObject) => {
+        this.props.dispatch(sendRequest(formObject))
+    }
+
     render() {
         return (
             <Layout style={{ minHeight: '100vh' }}>
@@ -31,7 +37,7 @@ class App extends React.Component {
                     </Header>
                     <Content className='container'>
 
-                        <Request />
+                        <Request handleSubmit={this.handleRequest} />
 
                         <div style={{ padding: 24, background: '#fff' }}>
                             response will be here
@@ -46,4 +52,4 @@ class App extends React.Component {
     }
 }
 
-export default App
+export default connect()(App)

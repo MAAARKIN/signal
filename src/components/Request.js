@@ -48,9 +48,8 @@ class Request extends React.Component {
         // e.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
                 console.log(JSON.stringify(values))
-                this.props.httpStore.addRequest('teste')
+                this.props.handleSubmit(values)
             }
         });
     }
@@ -58,12 +57,14 @@ class Request extends React.Component {
     render() {
         const { getFieldDecorator, getFieldProps, getFieldValue } = this.props.form;
 
-        const prefixSelector = getFieldDecorator('prefix', {
-            initialValue: 'Http://',
+        const prefixSelector = getFieldDecorator('verb', {
+            initialValue: 'GET',
         })(
             <Select style={{ width: 110, color: 'green' }}>
-                <Option value="Http://">Http://</Option>
-                <Option value="Https://">Https://</Option>
+                <Option value="GET">GET</Option>
+                <Option value="POST">POST</Option>
+                <Option value="PUT">PUT</Option>
+                <Option value="DELETE">DELETE</Option>
             </Select>
         );
 
@@ -103,7 +104,7 @@ class Request extends React.Component {
                         <Col sm={24}>
                             <Form.Item>
                                 {getFieldDecorator('url', {
-                                    initialValue: 'httpbin.org/get',
+                                    initialValue: 'http://httpbin.org/get',
                                     rules: [{ required: true, message: 'Please input the url!' }]
                                 })(
                                     <Input addonBefore={prefixSelector} suffix={<Button type="primary" onClick={this.handleForm}>Send</Button>} placeholder="endpoint.com.br" />
