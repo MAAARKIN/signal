@@ -116,7 +116,7 @@ ansi-styles@^3.2.1:
   dependencies:
     color-convert "^1.9.0"
 
-antd@^3.3.3:
+antd@^3.4.4:
   version "3.4.4"
   resolved "https://registry.yarnpkg.com/antd/-/antd-3.4.4.tgz#18897edd3182c06cc45310af8fa73e419ea346cb"
   dependencies:
@@ -323,7 +323,7 @@ autoprefixer@^6.3.1:
     postcss "^5.2.16"
     postcss-value-parser "^3.2.3"
 
-autoprefixer@^8.2.0:
+autoprefixer@^8.4.1:
   version "8.4.1"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-8.4.1.tgz#c6b30001ea4b3daa6b611e50071f62dd24beb564"
   dependencies:
@@ -540,7 +540,7 @@ babel-plugin-check-es2015-constants@^6.22.0:
   dependencies:
     babel-runtime "^6.22.0"
 
-babel-plugin-import@^1.6.7:
+babel-plugin-import@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-import/-/babel-plugin-import-1.7.0.tgz#7da886c26d46a048bc9ed126890fa7e419a6133d"
   dependencies:
@@ -2076,7 +2076,7 @@ electron-builder-lib@~20.9.0:
     semver "^5.5.0"
     temp-file "^3.1.1"
 
-electron-builder@^20.8.0:
+electron-builder@^20.11.1:
   version "20.11.1"
   resolved "https://registry.yarnpkg.com/electron-builder/-/electron-builder-20.11.1.tgz#a84feea424ac3abfa0dd1e4818dde8338250e543"
   dependencies:
@@ -2190,7 +2190,7 @@ electron-to-chromium@^1.2.7, electron-to-chromium@^1.3.30, electron-to-chromium@
   version "1.3.44"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.44.tgz#ef6b150a60d523082388cadad88085ecd2fd4684"
 
-electron@^1.8.4:
+electron@^1.8.6:
   version "1.8.6"
   resolved "https://registry.yarnpkg.com/electron/-/electron-1.8.6.tgz#6d45e377b321a35b78a794b64e40b2cf8face6ae"
   dependencies:
@@ -4136,7 +4136,7 @@ pako@~1.0.5:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/pako/-/pako-1.0.6.tgz#0101211baa70c4bca4a0f63f2206e97b7dfaf258"
 
-parcel-bundler@^1.6.2:
+parcel-bundler@^1.7.1:
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/parcel-bundler/-/parcel-bundler-1.7.1.tgz#0c5335b9d3946698c1eb7bc282c05c0007eb12b9"
   dependencies:
@@ -4600,6 +4600,10 @@ pretty-bytes@^1.0.2:
   dependencies:
     get-stdin "^4.0.1"
     meow "^3.1.0"
+
+pretty-data@^0.40.0:
+  version "0.40.0"
+  resolved "https://registry.yarnpkg.com/pretty-data/-/pretty-data-0.40.0.tgz#572aa8ea23467467ab94b6b5266a6fd9c8fddd72"
 
 private@^0.1.6, private@^0.1.8:
   version "0.1.8"
@@ -5072,7 +5076,7 @@ react-ace@^5.10.0:
     lodash.isequal "^4.1.1"
     prop-types "^15.5.8"
 
-react-dom@^16.2.0:
+react-dom@^16.3.2:
   version "16.3.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.3.2.tgz#cb90f107e09536d683d84ed5d4888e9640e0e4df"
   dependencies:
@@ -5115,7 +5119,7 @@ react-slick@~0.23.1:
     lodash.debounce "^4.0.8"
     resize-observer-polyfill "^1.5.0"
 
-react@^16.2.0:
+react@^16.3.2:
   version "16.3.2"
   resolved "https://registry.yarnpkg.com/react/-/react-16.3.2.tgz#fdc8420398533a1e58872f59091b272ce2f91ea9"
   dependencies:
