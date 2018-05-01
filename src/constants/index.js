@@ -1,3 +1,4 @@
 export const HttpConstants = {
-    SEND_REQUEST: 'SEND_REQUEST'
+    REQUEST: 'REQUEST',
+    RESPONSE: 'RESPONSE'
 }

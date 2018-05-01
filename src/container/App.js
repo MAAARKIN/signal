@@ -26,6 +26,8 @@ class App extends React.Component {
     }
 
     render() {
+        console.log('rending')
+        console.log(this.props.response)
         return (
             <Layout style={{ minHeight: '100vh' }}>
                 <SideBar collapsed={this.state.collapsed} onCollapse={this.onCollapse} />
@@ -41,6 +43,7 @@ class App extends React.Component {
 
                         <div style={{ padding: 24, background: '#fff' }}>
                             response will be here
+                            {JSON.stringify(this.props.response.data)}
                         </div>
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>
@@ -52,4 +55,10 @@ class App extends React.Component {
     }
 }
 
-export default connect()(App)
+const mapStateToProps = state => {
+    return {
+        response: state.http.response
+    }
+}
+
+export default connect(mapStateToProps)(App)

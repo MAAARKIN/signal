@@ -19,7 +19,7 @@ class Request extends React.Component {
     remove = (k) => {
         const { form } = this.props;
         // can use data-binding to get
-        const headers = form.getFieldValue('headers');
+        const headers = form.getFieldValue('headersCount');
         // We need at least one passenger
         if (headers.length === 0) {
             return;
@@ -27,29 +27,40 @@ class Request extends React.Component {
 
         // can use data-binding to set
         form.setFieldsValue({
-            headers: headers.filter(header => key !== k),
+            headersCount: headers.filter(header => header !== k),
         });
     }
 
     add = () => {
         const { form } = this.props;
         // can use data-binding to get
-        const headers = form.getFieldValue('headers');
+        const headers = form.getFieldValue('headersCount');
         const nextHeaders = headers.concat(uuid);
         uuid++;
         // can use data-binding to set
         // important! notify form to detect changes
         form.setFieldsValue({
-            headers: nextHeaders,
+            headersCount: nextHeaders,
         });
     }
 
     handleForm = () => {
         // e.preventDefault();
-        this.props.form.validateFieldsAndScroll((err, values) => {
+        this.props.form.validateFieldsAndScroll((err, payload) => {
             if (!err) {
-                console.log(JSON.stringify(values))
-                this.props.handleSubmit(values)
+                if (payload.headers) {
+                    console.log('entrou')
+                    const headersArray = payload.headers
+                    let headers = {}
+                    headersArray.forEach(currentHeader => {
+                        if (currentHeader.key) {
+                            headers[currentHeader.key] = currentHeader.value
+                        }
+                    })
+                    payload.headers = headers
+                }
+                console.log(JSON.stringify(payload))
+                this.props.handleSubmit(payload)
             }
         });
     }
@@ -68,32 +79,41 @@ class Request extends React.Component {
             </Select>
         );
 
-        getFieldDecorator('headers', { initialValue: [] });
-        const headers = getFieldValue('headers');
-        const formItems = headers.map((k, index) => {
+        getFieldDecorator('headersCount', { initialValue: [] });
+        const headersCount = getFieldValue('headersCount');
+        const formItems = headersCount.map((k, index) => {
             return (
-                <div>
-                    <Col sm={22} md={22}>
+                <Row gutter={16} type="flex" justify="center" align="middle">
+                    <Col sm={11} md={11}>
                         <Form.Item key={k} style={{ marginBottom: 5 }}>
-                            {getFieldDecorator(`names[${k}].header`, {
+                            {getFieldDecorator(`headers[${k}].key`, {
                                 validateTrigger: ['onChange', 'onBlur']
                             })(
-                                <Input placeholder="passenger name" style={{ marginRight: 8 }} />
+                                <Input placeholder="header" style={{ marginRight: 8 }} />
                             )}
                         </Form.Item>
                     </Col>
-                    {headers.length >= 1 ? (
+                    <Col sm={11} md={11}>
+                        <Form.Item key={k} style={{ marginBottom: 5 }}>
+                            {getFieldDecorator(`headers[${k}].value`, {
+                                validateTrigger: ['onChange', 'onBlur']
+                            })(
+                                <Input placeholder="value" style={{ marginRight: 8 }} />
+                            )}
+                        </Form.Item>
+                    </Col>
+                    {headersCount.length >= 1 ? (
                         <Col sm={2} md={2}>
                             <Icon
-                                style={{ marginLeft: 10 }}
+                                style={{marginBottom: 10}}
                                 className="dynamic-delete-button"
                                 type="minus-circle-o"
-                                disabled={headers.length === 1}
+                                disabled={headersCount.length === 1}
                                 onClick={() => this.remove(k)}
                             />
                         </Col>
                     ) : null}
-                </div>
+                </Row>
             );
         });
 
@@ -114,7 +134,7 @@ class Request extends React.Component {
                     </Row>
                     <div style={{ padding: 24, background: '#fff' }}>
                         <Row gutter={16}>
-                            <Col sm={8}>
+                            <Col sm={10}>
                                 <Row>
                                     {formItems}
                                 </Row>
@@ -122,7 +142,7 @@ class Request extends React.Component {
                                     <Icon type="plus" /> Add Header
                                 </Button>
                             </Col>
-                            <Col sm={16}>
+                            <Col sm={14}>
                                 <AceEditor
                                     mode="java"
                                     theme="iplastic"

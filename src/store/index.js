@@ -1,6 +1,6 @@
 import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
-import { applyMiddleware, compose, createStore } from 'redux'
+import { applyMiddleware, compose, createStore, combineReducers } from 'redux'
 
 import rootReducer from '../reducers'
 
@@ -20,5 +20,13 @@ const store = createStore(
         ),
     ),
 )
+
+if (module.hot) {
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept(() => {
+        const nextRootReducer = require('../reducers/index').default
+        store.replaceReducer(nextRootReducer);
+    });
+}
 
 export default store
