@@ -10,22 +10,12 @@ class SideBar extends React.Component {
     render() {
         return (
             <Sider width={200} style={{paddingTop: 50}} collapsed={this.props.collapsed} onCollapse={this.props.onCollapse}>
-                <div className="logo" style={{color: 'green'}}>
-                    logo
-                </div>
+                <Row className="logo" style={{marginBottom: 20}} type="flex" justify="center" gutter={16}>
+                    <h2 style={{color: 'white'}}>Signal</h2>
+                </Row>
                 <Row type="flex" justify="center" align="top">
                     <span style={{color: 'white'}}>History</span>
                 </Row>
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                    <Menu.Item key="1">
-                        <Icon type="pie-chart" />
-                        <span>Option 1</span>
-                    </Menu.Item>
-                    <Menu.Item key="2">
-                        <Icon type="desktop" />
-                        <span>Option 2</span>
-                    </Menu.Item>
-                </Menu>
             </Sider>
         )
     }

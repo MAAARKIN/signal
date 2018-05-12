@@ -5,6 +5,7 @@ import store from './store'
 
 import './assets/styles/theme.less'
 import './assets/styles/style.css'
+import './assets/styles/color-brewer.css'
 
 import App from './container/App'
 
