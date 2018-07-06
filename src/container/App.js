@@ -18,7 +18,7 @@ class App extends React.Component {
     }
 
     onCollapse = (collapsed) => {
-        console.log(collapsed);
+        // console.log(collapsed);
         this.setState({ collapsed });
     }
 
@@ -27,8 +27,11 @@ class App extends React.Component {
     }
 
     render() {
-        console.log('rending')
-        console.log(this.props.response)
+        // console.log('rending')
+        // console.log(this.props.response)
+        // console.log('request saved')
+        // console.log(this.props.request)
+
         return (
             <Layout style={{ minHeight: '100vh' }}>
                 <SideBar collapsed={this.state.collapsed} onCollapse={this.onCollapse} />
@@ -40,7 +43,7 @@ class App extends React.Component {
                     </Header>
                     <Content className='container'>
 
-                        <Request handleSubmit={this.handleRequest} />
+                        <Request handleSubmit={this.handleRequest} request={this.props.request} />
 
                         <Response response={this.props.response} />
                     </Content>
@@ -55,7 +58,8 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        response: state.http.response
+        response: state.http.response,
+        request: state.http.request
     }
 }
 
